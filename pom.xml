@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>Client</groupId>
 	<artifactId>client</artifactId>
-	<version>0.0.1</version>
+	<version>0.1</version>
 	<name>Client</name>
 	<description>Demo project Client</description>
 
@@ -23,13 +23,42 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+<!-- 			<version>7.3.0</version> -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch.client/transport -->
+		<dependency>
+    		<groupId>org.elasticsearch.client</groupId>
+    		<artifactId>transport</artifactId>
+    		<version>7.6.0</version>
+		</dependency>	
+		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
+		<dependency>
+    		<groupId>org.apache.lucene</groupId>
+    		<artifactId>lucene-analyzers-common</artifactId>
+    		<version>8.4.1</version>
 		</dependency>
 	</dependencies>
 
+
+<build>
+    <plugins>
+<plugin>
+  <groupId>org.apache.tomcat.maven</groupId>
+  <artifactId>tomcat7-maven-plugin</artifactId>
+  <version>2.0</version>
+  <configuration>
+    <url>http://localhost:8080/manager/text</url>
+    <path>/client</path>
+            <username>client</username>
+        <password>client</password>
+  </configuration>
+</plugin>
+    </plugins>
+</build>
 
 </project>
