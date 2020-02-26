@@ -4,11 +4,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+@Document(indexName="user")
 public class User {
-	
+	@Id
 	private String userId;
+	@Transient
 	private String name;
+	@Transient
 	private Date creationDate = new Date();
+	@Transient
 	private Map<String, String> userSettings = new HashMap<>();
 	
 	public User(){}

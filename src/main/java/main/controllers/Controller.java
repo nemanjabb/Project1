@@ -1,25 +1,36 @@
 package main.controllers;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import main.model.DocumentM;
+import main.service.DocumentService;
+
 @RestController
-class HelloController {
-	
-//	@Bean
-//    public ViewResolver getViewResolver() {
-//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/jsp/");
-//        resolver.setSuffix(".jsp");
-//        return resolver;
-//    }
-//	
-	@RequestMapping("/")
+class Controller {
+
+	@Autowired
+	DocumentService documentService;
+
+	@RequestMapping("/new")
 	String hello() {
-		
 
+		DocumentM doc = documentService.saveDocument();
 
-		return "Hi ++!";
+		return doc.getName().toString();
+
+	}
+	
+
+	@RequestMapping("/all")
+	int all() {
+
+		List<DocumentM> doc = documentService.findByName("");
+
+		return doc.size();
 
 	}
 }
