@@ -15,15 +15,16 @@ public class DocumentService {
 	public DocumentService(){}
 	
 	public List<DocumentM> findByName(String name) {
-		return null; //(List<DocumentM>) iDocument.findAll();
+//		return (List<DocumentM>) iDocument.findAll();
+		return null;
 	}
 	
 	public DocumentM saveDocument(){
 		DocumentM doc = new DocumentM();
-		doc.setName(7);
-		
-		return doc;
-//		return iDocument.save(doc);
+		doc.setName("Nemanja");
+//		iDocument.
+//		return doc;
+		return iDocument.save(doc);
 		
 	}
 	

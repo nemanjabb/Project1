@@ -1,19 +1,22 @@
 package main.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.model.DocumentM;
+import main.model.SdnList;
 import main.service.DocumentService;
+import main.service.SdnListService;
 
 @RestController
 class Controller {
 
 	@Autowired
 	DocumentService documentService;
+	
+	@Autowired
+	SdnListService sdnListService;
 
 	@RequestMapping("/new")
 	String hello() {
@@ -28,9 +31,9 @@ class Controller {
 	@RequestMapping("/all")
 	int all() {
 
-		List<DocumentM> doc = documentService.findByName("");
+		SdnList doc = sdnListService.getByName();
 
-		return doc.size();
+		return 1;
 
 	}
 }

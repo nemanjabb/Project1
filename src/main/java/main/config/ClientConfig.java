@@ -12,6 +12,7 @@ import org.springframework.data.elasticsearch.core.EntityMapper;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 import main.service.DocumentService;
+import main.service.SdnListService;
 
 @Configuration
 @EnableElasticsearchRepositories(                             
@@ -36,6 +37,11 @@ public class ClientConfig extends AbstractElasticsearchConfiguration {
 	@Bean
 	public DocumentService documentService() {
 		return new DocumentService();
+	}
+	
+	@Bean
+	public SdnListService sdnListService() {
+		return new SdnListService();
 	}
 	
 }
