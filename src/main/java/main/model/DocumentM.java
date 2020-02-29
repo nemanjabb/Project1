@@ -1,17 +1,14 @@
 package main.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.elasticsearch.annotations.Document;
-
-@Document (indexName="document")
+//@Document (indexName="document")
 public class DocumentM {
-	@Transient
+	// @Transient
 	private String title;
-	@Id
+	// @Id
 	private String name;
-	
-	public DocumentM(){}
+
+	public DocumentM() {
+	}
 
 	public String getTitle() {
 		return title;

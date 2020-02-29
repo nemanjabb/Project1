@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import main.model.DocumentM;
+import main.model.SDNEntry;
 import main.repo.IDocument;
 
 public class DocumentService {
@@ -14,17 +14,14 @@ public class DocumentService {
 	
 	public DocumentService(){}
 	
-	public List<DocumentM> findByName(String name) {
+	public Iterable<SDNEntry> findByName() {
 //		return (List<DocumentM>) iDocument.findAll();
-		return null;
+		return iDocument.findAll();
 	}
 	
-	public DocumentM saveDocument(){
-		DocumentM doc = new DocumentM();
-		doc.setName("Nemanja");
-//		iDocument.
-//		return doc;
-		return iDocument.save(doc);
+	public Iterable<SDNEntry> saveDocument(List<SDNEntry> entries){
+
+		return iDocument.saveAll(entries);
 		
 	}
 	
