@@ -8,12 +8,12 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
-//@Document(indexName = "entries", type = "entry", shards = 2)
+@Document(indexName = "entries", type = "entry", shards = 2)
 public class SdnEntry implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-//	@Id
+	@Id
 	private String uid;
 	private String firstName;
 	private String lastName;

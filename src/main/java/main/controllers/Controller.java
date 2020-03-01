@@ -30,21 +30,21 @@ class Controller {
 	@PostConstruct
 	void init() {
 
-		File file = new File("path to the file");
-
-		xStream.alias("sdnList", SdnList.class);
-		xStream.alias("publshInformation", PublshInformation.class);
-		xStream.alias("sdnEntry", SdnEntry.class);
-		// xStream.alias("sdnEntry", SdnEntry.class);
-		SdnList sdnList = null;
-		try {
-
-			sdnList = (SdnList) xStream.fromXML(file);
-		} catch (Exception e) {
-			e.getMessage();
-		}
-
-		sdnEntryService.saveAll(sdnList.getSdnEntries());
+//		File file = new File("C:\\Users\\Ivan Radojevic\\Downloads\\sdn.xml");
+//
+//		xStream.alias("sdnList", SdnList.class);
+//		xStream.alias("publshInformation", PublshInformation.class);
+//		xStream.alias("sdnEntry", SdnEntry.class);
+//		// xStream.alias("sdnEntry", SdnEntry.class);
+//		SdnList sdnList = null;
+//		try {
+//
+//			sdnList = (SdnList) xStream.fromXML(file);
+//		} catch (Exception e) {
+//			e.getMessage();
+//		}
+//
+//		sdnEntryService.saveAll(sdnList.getSdnEntries());
 
 	}
 
