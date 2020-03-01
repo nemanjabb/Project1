@@ -1,20 +1,17 @@
 package main.model;
 
-public class PlaceOfBirthItem {
+import java.io.Serializable;
 
+public class PlaceOfBirthItem implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String uid;
 	private String placeOfBirth;
 	private String mainEntry;
-	
-	public PlaceOfBirthItem(){}
-	
-	
-	public PlaceOfBirthItem(String uid, String placeOfBirth, String mainEntry) {
-		super();
-		this.uid = uid;
-		this.placeOfBirth = placeOfBirth;
-		this.mainEntry = mainEntry;
-	}
+
 	public String getUid() {
 		return uid;
 	}

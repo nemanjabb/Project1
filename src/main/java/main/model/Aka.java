@@ -1,13 +1,17 @@
 package main.model;
 
-public class Aka {
+import java.io.Serializable;
+
+public class Aka implements Serializable{
     
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String uid;
     private String type;
     private String category;
     private String lastName;
-    
-    public Aka (){}
     
 	public String getUid() {
 		return uid;

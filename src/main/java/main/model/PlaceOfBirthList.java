@@ -1,23 +1,26 @@
 package main.model;
 
-public class PlaceOfBirthList {
+import java.io.Serializable;
+import java.util.List;
 
-	private PlaceOfBirthItem placeOfBirthItem;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
-	public PlaceOfBirthList() {
+public class PlaceOfBirthList implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@XStreamImplicit(itemFieldName = "placeOfBirthItem")
+	private List<PlaceOfBirthItem> placeOfBirthItems;
+
+	public List<PlaceOfBirthItem> getPlaceOfBirthItems() {
+		return placeOfBirthItems;
 	}
 
-	public PlaceOfBirthList(PlaceOfBirthItem placeOfBirthItem) {
-		super();
-		this.placeOfBirthItem = placeOfBirthItem;
-	}
-
-	public PlaceOfBirthItem getPlaceOfBirthItem() {
-		return placeOfBirthItem;
-	}
-
-	public void setPlaceOfBirthItem(PlaceOfBirthItem placeOfBirthItem) {
-		this.placeOfBirthItem = placeOfBirthItem;
+	public void setPlaceOfBirthItems(List<PlaceOfBirthItem> placeOfBirthItems) {
+		this.placeOfBirthItems = placeOfBirthItems;
 	}
 
 }

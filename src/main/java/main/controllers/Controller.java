@@ -1,82 +1,63 @@
 package main.controllers;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.data.elasticsearch.core.EntityMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
+import com.thoughtworks.xstream.XStream;
 
-import main.model.SDNEntry;
+import main.model.PublshInformation;
+import main.model.SdnEntry;
 import main.model.SdnList;
-import main.service.DocumentService;
+import main.service.SdnEntryService;
 
 @RestController
 class Controller {
 
 	@Autowired
-	DocumentService documentService;
-
+	SdnEntryService sdnEntryService;
+	
 	@Autowired
-	EntityMapper entityMapper;
-
-	// @Autowired
-	// SdnListService sdnListService;
-
-	@Autowired
-	ResourceLoader resourceLoader;
-
-	@Autowired
-	RestHighLevelClient elasticsearchClient;
-
-	@Value("/client/src/main/resources/sdnUnitedStatesDepartmentOfTreasures.json")
-	Resource resourceFile;
+	XStream xStream;
 
 	@PostConstruct
 	void init() {
-//		SdnList sdnList = null;
-//
-//		Gson gson = new Gson();
-//
-//		try {
-//			sdnList = gson.fromJson(new FileReader("D:/Project2/Project1/src/main/resources/new 3.json"),
-//					SdnList.class);
-//		} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		documentService.saveDocument(sdnList.getSdnEntry());
+
+		File file = new File("path to the file");
+
+		xStream.alias("sdnList", SdnList.class);
+		xStream.alias("publshInformation", PublshInformation.class);
+		xStream.alias("sdnEntry", SdnEntry.class);
+		// xStream.alias("sdnEntry", SdnEntry.class);
+		SdnList sdnList = null;
+		try {
+
+			sdnList = (SdnList) xStream.fromXML(file);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		sdnEntryService.saveAll(sdnList.getSdnEntries());
 
 	}
 
-	@RequestMapping("/save")
-	String hello(@RequestBody List<SDNEntry> entries) {
-		documentService.saveDocument(entries);
-		return null;
+	@RequestMapping("/all")
+	Iterable<SdnEntry> findAll() {
+		return sdnEntryService.findAll();
 
 	}
 
-	@PostMapping("/name")
-	Iterable<SDNEntry> all() {
+	@GetMapping("/name")
+	List<SdnEntry> findByLastName(@RequestParam(name="name") String name) {
 
-		// SdnList doc = sdnListService.getByName();
-
-		Iterable<SDNEntry> retVal = documentService.findByName();
-		return retVal;
+		return sdnEntryService.findByLastName(name);
 
 	}
 }

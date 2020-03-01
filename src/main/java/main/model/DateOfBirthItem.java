@@ -1,19 +1,17 @@
 package main.model;
 
-public class DateOfBirthItem {
+import java.io.Serializable;
+
+public class DateOfBirthItem implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String uid;
 	private String dateOfBirth;
 	private String mainEntry;
-	
-	public DateOfBirthItem (){}
-	
-	public DateOfBirthItem(String uid, String dateOfBirth, String mainEntry) {
-		super();
-		this.uid = uid;
-		this.dateOfBirth = dateOfBirth;
-		this.mainEntry = mainEntry;
-	}
+
 	public String getUid() {
 		return uid;
 	}

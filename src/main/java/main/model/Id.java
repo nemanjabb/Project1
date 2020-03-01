@@ -1,21 +1,21 @@
 package main.model;
 
-public class Id {
+import java.io.Serializable;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+public class Id implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String uid;
 	private String idType;
 	private String idNumber;
 	private String idCountry;
-	
-	public Id(){}
-	
-	public Id(String uid, String idType, String idNumber, String idCountry) {
-		super();
-		this.uid = uid;
-		this.idType = idType;
-		this.idNumber = idNumber;
-		this.idCountry = idCountry;
-	}
 
 	public String getUid() {
 		return uid;

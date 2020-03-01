@@ -1,19 +1,24 @@
 package main.model;
 
-public class IdList {
-	private Id id;
+import java.io.Serializable;
+import java.util.List;
+
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+
+public class IdList implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	public IdList(){}
+	@XStreamImplicit(itemFieldName = "id")
+	private List<Id> ids;
 
-	public IdList(Id id) {
-		this.id = id;
+	public List<Id> getIds() {
+		return ids;
 	}
 
-	public Id getId() {
-		return id;
-	}
-
-	public void setId(Id id) {
-		this.id = id;
+	public void setIds(List<Id> ids) {
+		this.ids = ids;
 	}
 }

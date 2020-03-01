@@ -1,17 +1,13 @@
 package main.model;
 
-public class PublshInformation {
+import java.io.Serializable;
 
+public class PublshInformation  implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private String Publish_Date;
 	private String Record_Count;
-
-	public PublshInformation() {
-	}
-
-	public PublshInformation(String publish_Date, String record_Count) {
-		Publish_Date = publish_Date;
-		Record_Count = record_Count;
-	}
 
 	public String getPublish_Date() {
 		return Publish_Date;

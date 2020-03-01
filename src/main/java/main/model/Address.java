@@ -1,14 +1,18 @@
 package main.model;
 
-public class Address {
+import java.io.Serializable;
 
-    private String uid;
+public class Address implements Serializable{
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String uid;
     private String address1;
     private String city;
     private String postalCode;
     private String country;
-    
-    public Address(){}
     
 	public String getUid() {
 		return uid;

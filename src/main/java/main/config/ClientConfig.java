@@ -11,7 +11,11 @@ import org.springframework.data.elasticsearch.core.ElasticsearchEntityMapper;
 import org.springframework.data.elasticsearch.core.EntityMapper;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
-import main.service.DocumentService;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.mapper.MapperWrapper;
+
+import main.service.IdeService;
+import main.service.SdnEntryService;
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "org.springframework.data.elasticsearch.repositories")
@@ -33,9 +37,37 @@ public class ClientConfig extends AbstractElasticsearchConfiguration {
 	}
 
 	@Bean
-	public DocumentService documentService() {
-		return new DocumentService();
+	public SdnEntryService sdnEntryServiceService() {
+		return new SdnEntryService();
 	}
+	
+	@Bean
+	public IdeService ideService() {
+		return new IdeService();
+	}
+	
+	
+	@Bean
+	public XStream xStream(){
+		XStream xs = new XStream(){
+		    @Override
+		    protected MapperWrapper wrapMapper(MapperWrapper next) {
+		        return new MapperWrapper(next) {
+		            @Override
+		            public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+		                if (definedIn == Object.class) {
+		                    return false;
+		                }
+		                return super.shouldSerializeMember(definedIn, fieldName);
+		            }
+		        };
+		    }
+		};
+		xs.autodetectAnnotations(true);
+		return xs;
+	};
+	
+	
 	//
 	// @Bean
 	// public SdnListService sdnListService() {

@@ -1,27 +1,28 @@
 package main.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SdnList {
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+
+@XStreamAlias("sdnList")
+public class SdnList implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@XStreamAlias(value="publshInformation")
 	private PublshInformation publshInformation;
 	
-	private List<SDNEntry> sdnEntry;
-	
-	public SdnList() {
+	@XStreamImplicit(itemFieldName = "sdnEntry")
+	private List<SdnEntry> sdnEntries;
+
+	public List<SdnEntry> getSdnEntries() {
+		return sdnEntries;
 	}
 
-	public SdnList(PublshInformation publshInformation, List<SDNEntry> sdnEntry) {
-		this.setPublshInformation(publshInformation);
-		this.sdnEntry = sdnEntry;
-	}
-
-	public List<SDNEntry> getSdnEntry() {
-		return sdnEntry;
-	}
-
-	public void setSdnEntry(List<SDNEntry> sdnEntry) {
-		this.sdnEntry = sdnEntry;
+	public void setSdnEntries(List<SdnEntry> sdnEntries) {
+		this.sdnEntries = sdnEntries;
 	}
 
 	public PublshInformation getPublshInformation() {

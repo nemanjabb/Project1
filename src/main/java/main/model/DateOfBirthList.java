@@ -1,20 +1,25 @@
 package main.model;
 
-public class DateOfBirthList {
-	
-	private DateOfBirthItem dateOfBirthItem;
+import java.io.Serializable;
+import java.util.List;
 
-	public DateOfBirthList(){}
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+
+public class DateOfBirthList implements Serializable {
 	
-	public DateOfBirthList(DateOfBirthItem dateOfBirthItem) {
-		this.dateOfBirthItem = dateOfBirthItem;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@XStreamImplicit(itemFieldName = "dateOfBirthItem")
+	private List<DateOfBirthItem> dateOfBirthItems;
+
+	public List<DateOfBirthItem> getDateOfBirthItems() {
+		return dateOfBirthItems;
 	}
 
-	public DateOfBirthItem getDateOfBirthItem() {
-		return dateOfBirthItem;
-	}
-
-	public void setDateOfBirthItem(DateOfBirthItem dateOfBirthItem) {
-		this.dateOfBirthItem = dateOfBirthItem;
+	public void setDateOfBirthItems(List<DateOfBirthItem> dateOfBirthItems) {
+		this.dateOfBirthItems = dateOfBirthItems;
 	}
 }
