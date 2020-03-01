@@ -2,9 +2,6 @@ package main.model;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-
 public class Id implements Serializable{
 	
 	/**
